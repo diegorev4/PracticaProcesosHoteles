@@ -8,17 +8,38 @@ public class Reserva {
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private double precio;
+	private Cliente cliente;
+	private Pago metodoPago;
+	
 	
 	public Reserva() {
 		
 	}
 	
-	public Reserva(int id, Date fechaEntrada, Date fechaSalida, double precio) {
+	public Reserva(int id, Date fechaEntrada, Date fechaSalida, double precio, Cliente cliente, Pago pago) {
 		super();
 		this.id = id;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.precio = precio;
+		this.cliente = cliente;
+		this.metodoPago = pago;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Pago getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(Pago metodoPago) {
+		this.metodoPago = metodoPago;
 	}
 
 	public int getId() {
