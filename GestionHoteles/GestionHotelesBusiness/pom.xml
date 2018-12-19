@@ -6,6 +6,13 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>GestionHotelesBusiness</artifactId>
+  <dependencies>
+  	<dependency>
+  			<groupId>is.unican.es</groupId>
+            <artifactId>GestionHotelesCommon</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
     <build>
     <pluginManagement>
       <plugins>
