@@ -1,11 +1,21 @@
 package is.unican.es.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Pago {
 	
+	@Id
 	private int numTarjeta;
 	private int cvc;
 	private int mesCaducidad;
 	private int anhoCaducidad;
+	@ManyToOne
+	@JoinColumn(name="tipoTarjeta")
 	private TipoTarjeta tipo;
 	
 	public Pago() {

@@ -1,7 +1,12 @@
 package is.unican.es.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Cliente {
 
+	@Id
 	private String DNI;
 	private String nombre;
 	private String primerApellido;

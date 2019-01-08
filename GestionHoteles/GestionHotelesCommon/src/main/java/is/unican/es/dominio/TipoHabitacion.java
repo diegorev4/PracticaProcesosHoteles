@@ -1,7 +1,13 @@
 package is.unican.es.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class TipoHabitacion {
 
+	@Id
+	private int id;
 	private String descripcion;
 	private double precioPorNoche;
 	private int disponibles;
