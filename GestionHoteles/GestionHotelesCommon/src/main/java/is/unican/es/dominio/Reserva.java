@@ -2,12 +2,22 @@ package is.unican.es.dominio;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Reserva {
 
+	@Id
 	private int id;
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	private double precio;
+	@ManyToOne
+	@JoinColumn(name="cliente_fk")
 	private Cliente cliente;
 	private Pago metodoPago;
 	

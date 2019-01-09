@@ -2,12 +2,23 @@ package is.unican.es.dominio;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Hotel {
 
+	@Id
 	private String nombre;
 	private String localidad;
 	private String direccion;
+	@OneToMany
+	@JoinColumn(name="hotel_fk")
 	private List<TipoHabitacion> habitaciones;
+	@OneToMany
+	@JoinColumn(name="hotel_fk")
 	private List<Reserva> reservas;
 	
 	public Hotel() {
