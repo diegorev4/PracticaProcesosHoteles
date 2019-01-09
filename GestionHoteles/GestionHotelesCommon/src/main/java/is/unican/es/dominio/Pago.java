@@ -1,6 +1,8 @@
 package is.unican.es.dominio;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,8 +16,7 @@ public class Pago {
 	private int cvc;
 	private int mesCaducidad;
 	private int anhoCaducidad;
-	@ManyToOne
-	@JoinColumn(name="tipoTarjeta")
+	@Enumerated(EnumType.STRING)
 	private TipoTarjeta tipo;
 	
 	public Pago() {

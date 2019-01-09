@@ -8,13 +8,12 @@
 
     <jta-data-source>jdbc/hoteles</jta-data-source>
 
-    <class>is.unican.es.dominio.Hoteles</class>
+    <class>is.unican.es.dominio.Hotel</class>
     <class>is.unican.es.dominio.TipoHabitacion</class>
     <class>is.unican.es.dominio.Cliente</class>
     <class>is.unican.es.dominio.Pago</class>
     <class>is.unican.es.dominio.Reserva</class>
     <class>is.unican.es.dominio.ReservaTipoHabitacion</class>
-    <class>is.unican.es.dominio.TipoTarjeta</class>
 
     <properties>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
