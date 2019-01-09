@@ -19,5 +19,6 @@
 		<module>GestionHotelesBusiness</module>
 		<module>GestionHotelesWeb</module>
 		<module>GestionHotelesCommon</module>
+		<module>GestionHotelesDatos</module>
 	</modules>
 </project>
