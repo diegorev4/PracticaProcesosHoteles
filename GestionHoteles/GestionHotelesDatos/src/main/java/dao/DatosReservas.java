@@ -1,10 +1,12 @@
 package dao;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import is.unican.es.IReservasDAO;
 import is.unican.es.dominio.Hotel;
@@ -35,17 +37,29 @@ public class DatosReservas implements IReservasDAO{
 		e.persist(res);
 	}
 
-	public void modificarReserva(ReservaTipoHabitacion reservaNueva) {
-		e.merge(reservaNueva);
+	public ReservaTipoHabitacion modificarReserva(ReservaTipoHabitacion reservaNueva) {
+		return e.merge(reservaNueva);
 	}
 
-	public ReservaTipoHabitacion[] reservaPorFecha(Date fecha) {
-		// TODO Auto-generated method stub
+	public List<ReservaTipoHabitacion> reservaPorFecha(Date fecha) {
+		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.fechaEntrada = :fecha");
+		q.setParameter("fecha",fecha);
+		List<ReservaTipoHabitacion> reservasPorFecha = q.getResultList();
+		if(reservasPorFecha != null) {
+			return reservasPorFecha;
+		}
 		return null;
 	}
 
-	public ReservaTipoHabitacion[] reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
-		// TODO Auto-generated method stub
+	public List<ReservaTipoHabitacion> reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
+		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.fechaEntrada = :fechaentrada"
+				+ " and r.fechaSalida = :fechaSalida");
+		q.setParameter("fechaEntrada",fechaIni);
+		q.setParameter("fechaSalida",fechaFin);
+		List<ReservaTipoHabitacion> reservasPorFecha = q.getResultList();
+		if(reservasPorFecha != null) {
+			return reservasPorFecha;
+		}
 		return null;
 	}
 

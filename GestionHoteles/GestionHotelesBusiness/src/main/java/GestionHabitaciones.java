@@ -25,7 +25,7 @@ public class GestionHabitaciones implements IGestionHabitacionesEJBRemote{
 	}
 
 	@Override
-	public Hotel[] consultaHoteles() {
+	public List<Hotel> consultaHoteles() {
 		return dh.hoteles();
 	}
 

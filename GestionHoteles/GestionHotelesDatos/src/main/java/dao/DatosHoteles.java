@@ -1,8 +1,11 @@
 package dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import is.unican.es.IHotelesDAO;
 import is.unican.es.dominio.Hotel;
@@ -18,14 +21,22 @@ public class DatosHoteles implements IHotelesDAO {
 	}
 
 	public Hotel hotelPorNombre(String nombre) {
-		return e.find(Hotel.class, nombre);
+		Query q = e.createQuery("SELECT h FROM Hotel h WHERE h.nombre = :nombre");
+		q.setParameter("nombre", nombre);
+		return (Hotel) q.getSingleResult();
 	}
 
 	public void modificarHotel(Hotel nuevo) {
 		e.merge(nuevo);
 	}
 
-	public Hotel[] hoteles() {
+	public List<Hotel> hoteles() {
+		Query q = e.createQuery("SELECT h FROM Hotel h");
+		@SuppressWarnings("unchecked")
+		List<Hotel> hoteles = q.getResultList();
+		if(hoteles != null) {
+			return hoteles;
+		}
 		return null;
 	}
 

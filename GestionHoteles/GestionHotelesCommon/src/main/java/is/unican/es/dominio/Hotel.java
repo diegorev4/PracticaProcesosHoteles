@@ -90,6 +90,10 @@ public class Hotel {
 	public void setHabitaciones(List<TipoHabitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
+	
+	public List<Reserva> getReservas(){
+		return reservas;
+	}
 
 	
 }

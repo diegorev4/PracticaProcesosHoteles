@@ -15,7 +15,7 @@ public interface IGestionReservasEJBRemote {
 	public ReservaTipoHabitacion consultaReserva(int id);
 	public boolean cancelarReserva(int id);
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo);
-	public boolean modificarReservaFecha(int id, Date fecha);
+	public boolean modificarReservaFecha(int id, Date fechaInicio,Date fechaSalida);
 	public ReservaTipoHabitacion reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones,
 			Date fechaEntrada, Date fechaSalida, int precio, String primerApellido, String segundoApellido, String email,
 			int cvc, int mesCaducidad, int anhoCaducidad, TipoTarjeta tipo);

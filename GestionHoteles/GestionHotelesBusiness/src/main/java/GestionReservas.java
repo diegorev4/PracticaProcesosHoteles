@@ -25,20 +25,34 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 
 	@Override
 	public boolean cancelarReserva(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		if(dr.eliminarReserva(id) == null) {
+			return false;//Indica que no existe tal reserva
+		}
+		return true;
 	}
 
 	@Override
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo) {
-		// TODO Auto-generated method stub
-		return false;
+		ReservaTipoHabitacion r = dr.consultaReserva(id);
+		r.setTipoHabitacion(tipo);
+		r.setNumHabitaciones(numHabitaciones);
+		
+		if(dr.modificarReserva(r) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean modificarReservaFecha(int id, Date fecha) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean modificarReservaFecha(int id, Date fechaInicio,Date fechaSalida) {
+		ReservaTipoHabitacion reservaTipoHabitacion = dr.consultaReserva(id);
+		Reserva reserva = reservaTipoHabitacion.getReserva();
+		reserva.setFechaEntrada(fechaInicio);
+		reserva.setFechaSalida(fechaSalida);
+		if(dr.modificarReserva(reservaTipoHabitacion) == null) {
+			return false;
+		}
+		return true;
 	}
 
 

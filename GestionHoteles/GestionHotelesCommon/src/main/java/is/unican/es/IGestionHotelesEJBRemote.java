@@ -1,5 +1,6 @@
 package is.unican.es;
 
+import java.util.List;
 import java.util.Date;
 
 import javax.ejb.Remote;
@@ -11,5 +12,5 @@ import is.unican.es.dominio.TipoHabitacion;
 public interface IGestionHotelesEJBRemote {
 
 	public Hotel consultarHotel(String hotel);
-	public TipoHabitacion[] verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal);
+	public List<TipoHabitacion> verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal);
 }
