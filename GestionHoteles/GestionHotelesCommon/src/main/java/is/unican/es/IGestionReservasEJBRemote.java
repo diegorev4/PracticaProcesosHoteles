@@ -5,14 +5,18 @@ import java.util.Date;
 import javax.ejb.Remote;
 
 import is.unican.es.dominio.Reserva;
+import is.unican.es.dominio.ReservaTipoHabitacion;
 import is.unican.es.dominio.TipoHabitacion;
+import is.unican.es.dominio.TipoTarjeta;
 
 @Remote
 public interface IGestionReservasEJBRemote {
 
-	public Reserva consultaReserva(int id);
+	public ReservaTipoHabitacion consultaReserva(int id);
 	public boolean cancelarReserva(int id);
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo);
 	public boolean modificarReservaFecha(int id, Date fecha);
-	public Reserva reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones);
+	public ReservaTipoHabitacion reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones,
+			Date fechaEntrada, Date fechaSalida, int precio, String primerApellido, String segundoApellido, String email,
+			int cvc, int mesCaducidad, int anhoCaducidad, TipoTarjeta tipo);
 }

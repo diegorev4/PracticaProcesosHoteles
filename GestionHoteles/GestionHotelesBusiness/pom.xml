@@ -12,6 +12,11 @@
             <artifactId>GestionHotelesCommon</artifactId>
             <version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  			<groupId>is.unican.es</groupId>
+            <artifactId>GestionHotelesDatos</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
     <build>
     <pluginManagement>

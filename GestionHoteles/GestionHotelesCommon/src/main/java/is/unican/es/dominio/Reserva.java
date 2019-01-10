@@ -3,6 +3,8 @@ package is.unican.es.dominio;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,6 +14,7 @@ import javax.persistence.OneToMany;
 public class Reserva {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private Date fechaEntrada;
 	private Date fechaSalida;
@@ -26,9 +29,8 @@ public class Reserva {
 		
 	}
 	
-	public Reserva(int id, Date fechaEntrada, Date fechaSalida, double precio, Cliente cliente, Pago pago) {
+	public Reserva(Date fechaEntrada, Date fechaSalida, double precio, Cliente cliente, Pago pago) {
 		super();
-		this.id = id;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.precio = precio;

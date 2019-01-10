@@ -1,7 +1,10 @@
 package dao;
 
+import javax.ejb.Stateless;
+
 import is.unican.es.ILoginDAO;
 
+@Stateless
 public class DatosLogin implements ILoginDAO{
 
 	protected static DatosLogin instancia = null;
