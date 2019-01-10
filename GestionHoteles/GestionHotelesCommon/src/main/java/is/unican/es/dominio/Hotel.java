@@ -3,6 +3,8 @@ package is.unican.es.dominio;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -10,8 +12,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class Hotel {
 
-	@Id
+	
 	private String nombre;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	private String localidad;
 	private String direccion;
 	@OneToMany

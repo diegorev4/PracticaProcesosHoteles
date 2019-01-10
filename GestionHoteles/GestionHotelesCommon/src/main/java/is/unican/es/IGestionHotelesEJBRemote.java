@@ -10,6 +10,6 @@ import is.unican.es.dominio.TipoHabitacion;
 @Remote
 public interface IGestionHotelesEJBRemote {
 
-	public Hotel consultarHotel(String hotel, String localidad);
+	public Hotel consultarHotel(String hotel);
 	public TipoHabitacion[] verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal);
 }

@@ -1,23 +1,25 @@
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import dao.DatosReservas;
 import is.unican.es.IGestionReservasGerenteEJBRemote;
-import is.unican.es.dominio.Reserva;
+import is.unican.es.dominio.ReservaTipoHabitacion;
 
 @Stateless
 public class GestionReservasGerente implements IGestionReservasGerenteEJBRemote{
 
+	@EJB
+	private DatosReservas dr;
 	@Override
-	public Reserva[] consultarReservas(Date fecha) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReservaTipoHabitacion[] consultarReservas(Date fecha) {
+		return dr.reservaPorFecha(fecha);
 	}
 
 	@Override
-	public Reserva[] consultarReservasRAngo(Date fechaIni, Date fechaFin) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReservaTipoHabitacion[] consultarReservasRAngo(Date fechaIni, Date fechaFin) {
+		return dr.reservaPorRangoFecha(fechaIni, fechaFin);
 	}
 
 }
