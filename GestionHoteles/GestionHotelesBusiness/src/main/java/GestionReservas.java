@@ -23,30 +23,25 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 		return dr.consultaReserva(id);
 	}
 
-
+	@Override
 	public boolean cancelarReserva(int id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
+	@Override
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
+	@Override
 	public boolean modificarReservaFecha(int id, Date fecha) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-<<<<<<< HEAD
 
-	public Reserva reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones) {
-		// TODO Auto-generated method stub
-		return null;
-=======
 	@Override
 	public ReservaTipoHabitacion reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones,
 			Date fechaEntrada, Date fechaSalida, int precio, String primerApellido, String segundoApellido, String email,
@@ -66,7 +61,6 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 		
 		dr.addReserva(r);
 		return r;
->>>>>>> diego
 	}
 
 }

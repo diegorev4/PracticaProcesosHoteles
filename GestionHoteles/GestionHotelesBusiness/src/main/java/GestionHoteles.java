@@ -18,7 +18,7 @@ public class GestionHoteles implements IGestionHotelesEJBRemote{
 		return dh.hotelPorNombre(hotel);
 	}
 
-	
+	@Override
 	public TipoHabitacion[] verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal) {
 		return null;
 	}

@@ -16,13 +16,13 @@ public class GestionLogin implements IGestionLoginEJBRemote{
 		return dl.IniciarSesion(usuario, pass);
 	}
 
-
+	@Override
 	public boolean cerrarSesion() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
+	@Override
 	public boolean estadoSesion() {
 		// TODO Auto-generated method stub
 		return false;
