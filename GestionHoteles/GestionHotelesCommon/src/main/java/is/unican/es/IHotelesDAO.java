@@ -1,11 +1,16 @@
 package is.unican.es;
 
+import javax.ejb.Remote;
+
 import is.unican.es.dominio.Hotel;
 
+@Remote
 public interface IHotelesDAO {
 
-	public abstract Hotel hotelPorId(int id);
-	public Hotel hotelPorNombreLocalidad(String nombre, String localidad);
-	public Hotel modificarHotel(Hotel nuevo);
+	public void addHotel(Hotel h);
+	public void removeHotel(Hotel h);
+	public Hotel hotelPorId(int id);
+	public Hotel hotelPorNombre(String nombre);
+	public void modificarHotel(Hotel nuevo);
 	public Hotel[] hoteles();
 }

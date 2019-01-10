@@ -2,52 +2,49 @@ package dao;
 
 import java.util.Date;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import is.unican.es.IReservasDAO;
 import is.unican.es.dominio.Hotel;
 import is.unican.es.dominio.Reserva;
+import is.unican.es.dominio.ReservaTipoHabitacion;
 import is.unican.es.dominio.TipoHabitacion;
 
+@Stateless
 public class DatosReservas implements IReservasDAO{
-
-	protected static DatosReservas instancia = null;
 	
-	protected DatosReservas() {
-		
+	@PersistenceContext(unitName="HotelesPU")
+	private EntityManager e;
+	
+	public ReservaTipoHabitacion consultaReserva(int id) { 
+		return e.find(ReservaTipoHabitacion.class, id);
 	}
-	
-	public DatosReservas getInstance() {
-		if(instancia == null) {
-			instancia = new DatosReservas();
+
+	public ReservaTipoHabitacion eliminarReserva(int id) {
+		ReservaTipoHabitacion res = e.find(ReservaTipoHabitacion.class, id);
+		if (res == null) {
+			return null;
 		}
-		return instancia;
+		e.remove(res);
+		return res;
 	}
-	public Reserva consultaReserva(int id) {
+
+	public void addReserva(ReservaTipoHabitacion res) {
+		e.persist(res);
+	}
+
+	public void modificarReserva(ReservaTipoHabitacion reservaNueva) {
+		e.merge(reservaNueva);
+	}
+
+	public ReservaTipoHabitacion[] reservaPorFecha(Date fecha) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Reserva eliminarReserva(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Reserva addReserva(TipoHabitacion th, String nombre, String dni, String tarjeta, int numHabitaciones,
-			Hotel h, Date fecha) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Reserva modificarReserva(Reserva reservaNueva) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Reserva[] reservaPorFecha(Date fecha) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Reserva[] reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
+	public ReservaTipoHabitacion[] reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
 		// TODO Auto-generated method stub
 		return null;
 	}

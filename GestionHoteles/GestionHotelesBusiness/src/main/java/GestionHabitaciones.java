@@ -1,5 +1,9 @@
+import java.util.List;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import dao.DatosHoteles;
 import is.unican.es.IGestionHabitacionesEJBRemote;
 import is.unican.es.dominio.Hotel;
 import is.unican.es.dominio.TipoHabitacion;
@@ -7,28 +11,33 @@ import is.unican.es.dominio.TipoHabitacion;
 @Stateless
 public class GestionHabitaciones implements IGestionHabitacionesEJBRemote{
 
+	@EJB
+	private DatosHoteles dh;
 	@Override
-	public boolean modificarHabitaciones(Hotel h, int numHabitaciones, double precio, TipoHabitacion tH) {
-		// TODO Auto-generated method stub
-		return false;
+	public void modificarHabitaciones(Hotel h, int numHabitaciones, double precio, TipoHabitacion tH) {
+		h.elimnarHabitacion(tH);
+		tH.setDisponibles(numHabitaciones);
+		tH.setPrecioPorNoche(precio);
+		h.anhadirHabitacion(tH);
+		
+		dh.modificarHotel(h);
+		
 	}
 
 	@Override
 	public Hotel[] consultaHoteles() {
-		// TODO Auto-generated method stub
-		return null;
+		return dh.hoteles();
 	}
 
 	@Override
 	public Hotel consultaHotel(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dh.hotelPorId(id);
 	}
 
 	@Override
-	public boolean addTipoHabitacion(String descripcion, int disponibles, double precio, Hotel hotel) {
-		// TODO Auto-generated method stub
-		return false;
+	public void addTipoHabitacion(String descripcion, int disponibles, double precio, Hotel hotel) {
+		hotel.anhadirHabitacion(new TipoHabitacion(descripcion, precio, disponibles));
+		dh.modificarHotel(hotel);
 	}
 
 }

@@ -1,23 +1,27 @@
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import dao.DatosLogin;
 import is.unican.es.IGestionLoginEJBRemote;
 
 @Stateless
 public class GestionLogin implements IGestionLoginEJBRemote{
 
-
+	@EJB
+	private DatosLogin dl;
+	@Override
 	public boolean iniciarSesion(String usuario, String pass) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return dl.IniciarSesion(usuario, pass);
 	}
 
-
+	@Override
 	public boolean cerrarSesion() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
+	@Override
 	public boolean estadoSesion() {
 		// TODO Auto-generated method stub
 		return false;
