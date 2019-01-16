@@ -13,4 +13,5 @@ public interface IGestionHotelesEJBRemote {
 
 	public Hotel consultarHotel(String hotel);
 	public List<TipoHabitacion> verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal);
+	public List<Hotel> consultarHotelLocalidad(String localidad);
 }
