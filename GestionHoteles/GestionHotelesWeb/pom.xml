@@ -7,4 +7,55 @@
   </parent>
   <artifactId>GestionHotelesWeb</artifactId>
   <packaging>war</packaging>
+  <dependencies>
+ 		<dependency>
+ 			<groupId>is.unican.es</groupId>
+ 			<artifactId>GestionHotelesBusiness</artifactId>
+ 			<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>is.unican.es</groupId>
+ 			<artifactId>GestionHotelesCommon</artifactId>
+ 			<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
+ 	</dependencies>
+ 	<plugin>
+ 	   <groupId>org.glassfish.maven.plugin</groupId>
+ 	   <artifactId>maven-glassfish-plugin</artifactId>  
+ 	   <version>2.1 </version>  
+ 	   <configuration>
+ 	    <glassfishDirectory>${local.glassfish.home}</glassfishDirectory> 
+ 	    <user>admin</user>
+ 	    <passwordFile>${local.glassfish.passfile}</passwordFile>
+ 	    <domain>
+ 	      <name>domain1</name>           
+ 	      <httpPort>8080</httpPort>           
+ 	      <adminPort>4848</adminPort>         
+ 	    </domain> 
+ 	    <components>        
+ 	       <component>           
+ 	       	<name>${project.artifactId}</name>           
+ 	       	<artifact>target/${project.build.finalName}.ear</artifact>        
+ 	       </component> 
+ 	    </components>
+ 	    <echo>true</echo>
+ 	   </configuration>
+ 	   <!--Opcional, unedeploy/undeploya lasfasespackage/clean -->
+ 	   <executions> 
+ 	    <execution>
+ 	    	<id>gf-undeploy</id>
+ 	    	<goals>
+ 	    	 <goal>undeploy</goal> 
+ 	    	</goals>
+ 	     <phase>clean</phase>
+ 	     </execution>
+ 	     	<execution>
+ 	     		<id>gf-deploy</id>
+ 	     	    <goals> 
+ 	     	   		<goal>deploy</goal>
+ 	     	   	 </goals>
+ 	     	   	 <phase>package</phase>
+ 	     	</execution> 
+ 	     </executions>
+ 	 </plugin>
 </project>
