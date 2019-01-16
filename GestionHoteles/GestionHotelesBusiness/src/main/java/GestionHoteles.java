@@ -22,9 +22,14 @@ public class GestionHoteles implements IGestionHotelesEJBRemote{
 
 	@Override
 	public List<TipoHabitacion> verDisponibilidad(Hotel h, Date fechaInicial, Date fechaFinal) {
-		List<Reserva> reservas = h.getReservas();
+		
 		//TO DO MAS ADELANTE
 		return null;
+	}
+	
+	@Override
+	public List<Hotel> consultarHotelLocalidad(String localidad){
+		return dh.hotelLocalidad(localidad);
 	}
 
 }

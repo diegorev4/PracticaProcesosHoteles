@@ -29,6 +29,16 @@ public class DatosHoteles implements IHotelesDAO {
 	public void modificarHotel(Hotel nuevo) {
 		e.merge(nuevo);
 	}
+	
+	public List<Hotel> hotelLocalidad(String localidad){
+		Query q = e.createQuery("SELECT h FROM Hotel WHERE h.localidad = :localidad");
+		q.setParameter("localidad", localidad);
+		List <Hotel> resultList = q.getResultList();
+		if (resultList != null) {
+			return resultList;
+		}
+		return null;
+	}
 
 	public List<Hotel> hoteles() {
 		Query q = e.createQuery("SELECT h FROM Hotel h");

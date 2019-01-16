@@ -15,4 +15,5 @@ public interface IHotelesDAO {
 	public Hotel hotelPorNombre(String nombre);
 	public void modificarHotel(Hotel nuevo);
 	public List<Hotel> hoteles();
+	public List<Hotel> hotelLocalidad(String localidad);
 }
