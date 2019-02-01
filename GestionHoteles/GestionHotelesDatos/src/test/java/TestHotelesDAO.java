@@ -17,7 +17,9 @@ import is.unican.es.IHotelesDAO;
 import is.unican.es.dominio.Hotel;
 
 public class TestHotelesDAO {
-
+/**
+ * 
+ 
 	private static IHotelesDAO d;
 	private static EJBContainer ec;
 	
@@ -42,5 +44,5 @@ public class TestHotelesDAO {
 		
 		assertTrue(h.equals(d.hotelPorId(0)));
 	}
-	
+	*/
 }

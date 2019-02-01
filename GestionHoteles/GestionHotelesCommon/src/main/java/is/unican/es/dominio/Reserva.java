@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Reserva {
@@ -16,7 +18,9 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Temporal(TemporalType.DATE)
 	private Date fechaEntrada;
+	@Temporal(TemporalType.DATE)
 	private Date fechaSalida;
 	private double precio;
 	@ManyToOne

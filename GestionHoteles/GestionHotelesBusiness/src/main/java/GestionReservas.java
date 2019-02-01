@@ -4,8 +4,8 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import dao.DatosReservas;
 import is.unican.es.IGestionReservasEJBRemote;
+import is.unican.es.IReservasDAO;
 import is.unican.es.dominio.Cliente;
 import is.unican.es.dominio.Pago;
 import is.unican.es.dominio.Reserva;
@@ -17,7 +17,7 @@ import is.unican.es.dominio.TipoTarjeta;
 public class GestionReservas implements IGestionReservasEJBRemote{
 
 	@EJB
-	private DatosReservas dr;
+	private IReservasDAO dr;
 	@Override
 	public ReservaTipoHabitacion consultaReserva(int id) {
 		return dr.consultaReserva(id);

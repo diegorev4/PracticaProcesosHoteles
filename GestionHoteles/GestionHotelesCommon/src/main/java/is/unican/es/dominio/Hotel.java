@@ -1,5 +1,6 @@
 package is.unican.es.dominio;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,9 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Hotel {
+public class Hotel implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

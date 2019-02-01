@@ -1,15 +1,15 @@
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import dao.DatosLogin;
 import is.unican.es.IGestionLoginEJBRemote;
+import is.unican.es.ILoginDAO;
 
 @Stateless
 public class GestionLogin implements IGestionLoginEJBRemote{
 
 
 	@EJB
-	private DatosLogin dl;
+	private ILoginDAO dl;
 	@Override
 	public boolean iniciarSesion(String usuario, String pass) {
 		
