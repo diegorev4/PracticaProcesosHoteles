@@ -16,24 +16,26 @@ import is.unican.es.dominio.TipoHabitacion;
 
 @Stateless
 public class DatosReservas implements IReservasDAO{
-	
+
 	@PersistenceContext(unitName="HotelesPU")
 	private EntityManager e;
-	
-	public ReservaTipoHabitacion consultaReserva(int id) { 
-		return e.find(ReservaTipoHabitacion.class, id);
-	}
 
-	public ReservaTipoHabitacion eliminarReserva(int id) {
-		ReservaTipoHabitacion res = e.find(ReservaTipoHabitacion.class, id);
-		if (res == null) {
-			return null;
+	public List<ReservaTipoHabitacion> consultaReservaHabitaciones(int id) { 
+		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.reserva_fk = :reservaId");
+		q.setParameter("reservaId", id);
+		List<ReservaTipoHabitacion> reservas = q.getResultList();
+		if(reservas != null) {
+			return reservas;
 		}
-		e.remove(res);
-		return res;
+		return null;
 	}
 
-	public void addReserva(ReservaTipoHabitacion res) {
+	public void eliminarReservaHabitacion(int id) {
+			ReservaTipoHabitacion res = e.find(ReservaTipoHabitacion.class,id);
+			e.remove(res);
+	}
+
+	public void addReservaHabitacion(ReservaTipoHabitacion res) {
 		e.persist(res);
 	}
 
@@ -41,26 +43,45 @@ public class DatosReservas implements IReservasDAO{
 		return e.merge(reservaNueva);
 	}
 
-	public List<ReservaTipoHabitacion> reservaPorFecha(Date fecha) {
-		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.fechaEntrada = :fecha");
+
+	public List<Reserva> reservaPorFecha(Date fecha) {
+		Query q = e.createQuery("SELECT r FROM Reserva r WHERE r.fechaEntrada = :fecha");
 		q.setParameter("fecha",fecha);
-		List<ReservaTipoHabitacion> reservasPorFecha = q.getResultList();
-		if(reservasPorFecha != null) {
-			return reservasPorFecha;
+		List<Reserva> reservas = q.getResultList();
+		if(reservas != null) {
+			return reservas;
 		}
 		return null;
 	}
 
-	public List<ReservaTipoHabitacion> reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
-		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.fechaEntrada = :fechaentrada"
+	public List<Reserva> reservaPorRangoFecha(Date fechaIni, Date fechaFin) {
+		Query q = e.createQuery("SELECT r FROM Reservar WHERE r.fechaEntrada = :fechaentrada"
 				+ " and r.fechaSalida = :fechaSalida");
 		q.setParameter("fechaEntrada",fechaIni);
 		q.setParameter("fechaSalida",fechaFin);
-		List<ReservaTipoHabitacion> reservasPorFecha = q.getResultList();
-		if(reservasPorFecha != null) {
-			return reservasPorFecha;
+		List<Reserva> reservas = q.getResultList();
+		if(reservas != null) {
+			return reservas;
 		}
 		return null;
+	}
+
+	public Reserva consultaReserva(int id) {
+		return e.find(Reserva.class, id);
+	}
+
+	public void eliminarReserva(int id) {
+		List<ReservaTipoHabitacion> habitaciones = consultaReservaHabitaciones(id);
+		for(int i=0;i<habitaciones.size();i++) {
+			ReservaTipoHabitacion res = e.find(ReservaTipoHabitacion.class, habitaciones.get(i).getId());
+			e.remove(res);
+		}
+		e.remove(e.find(Reserva.class,id));
+	}
+
+
+	public void addReserva(Reserva res) {
+		e.persist(res);		
 	}
 
 }

@@ -49,5 +49,13 @@ public class TipoHabitacion {
 	public void setDisponibles(int disponibles) {
 		this.disponibles = disponibles;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 }

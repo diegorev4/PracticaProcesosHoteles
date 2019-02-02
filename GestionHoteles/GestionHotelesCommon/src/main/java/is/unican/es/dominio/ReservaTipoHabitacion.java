@@ -55,5 +55,13 @@ public class ReservaTipoHabitacion {
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 }

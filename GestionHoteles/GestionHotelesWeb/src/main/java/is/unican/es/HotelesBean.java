@@ -29,7 +29,7 @@ public class HotelesBean implements Serializable{
 			if (localidad.isEmpty()) {
 				return "index.xhtml";
 			}else {
-				//ho = gest.hotelesporlocalidad(localidad);
+				ho = gest.consultarHotelLocalidad(localidad);
 				return "hotelDetalle.xhtml";
 			}
 		}else {

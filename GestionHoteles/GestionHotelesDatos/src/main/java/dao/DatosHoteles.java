@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,12 +10,17 @@ import javax.persistence.Query;
 
 import is.unican.es.IHotelesDAO;
 import is.unican.es.dominio.Hotel;
+import is.unican.es.dominio.Reserva;
+import is.unican.es.dominio.ReservaTipoHabitacion;
+import is.unican.es.dominio.TipoHabitacion;
 
 @Stateless
 public class DatosHoteles implements IHotelesDAO {
 
 	@PersistenceContext(unitName="HotelesPU")
 	private EntityManager e;
+	
+	private DatosReservas reservasDAO;
 	
 	public Hotel hotelPorId(int id) {
 		return e.find(Hotel.class, id);
@@ -31,8 +37,9 @@ public class DatosHoteles implements IHotelesDAO {
 	}
 	
 	public List<Hotel> hotelLocalidad(String localidad){
-		Query q = e.createQuery("SELECT h FROM Hotel WHERE h.localidad = :localidad");
+		Query q = e.createQuery("SELECT h FROM Hotel h WHERE h.localidad = :localidad");
 		q.setParameter("localidad", localidad);
+		@SuppressWarnings("unchecked")
 		List <Hotel> resultList = q.getResultList();
 		if (resultList != null) {
 			return resultList;
@@ -57,5 +64,37 @@ public class DatosHoteles implements IHotelesDAO {
 	public void removeHotel(Hotel h) {
 		e.remove(h);
 	}
+
+	public List<TipoHabitacion> habitacionesDisponibles(Hotel h, Date fechaInicial, Date fechaFinal) {
+		List<TipoHabitacion> habitaciones = h.getHabitaciones();
+		Query q = e.createQuery("SELECT r FROM Reserva r WHERE r.hotel_fk = :hotelId "
+				+ "and r.fechaSalida > :fechaInicial");
+		q.setParameter("hotelId", h.getId());
+		@SuppressWarnings("unchecked")
+		List<Reserva> reservas = q.getResultList();
+		int contador = 0;
+		while(contador < reservas.size()){
+			List<ReservaTipoHabitacion> reservasHabitaciones = reservasDAO.consultaReservaHabitaciones(reservas.get(contador).getId());
+			int contadorHabitaciones = 0;
+			boolean encontrado;
+			int i;
+			while (contadorHabitaciones < reservasHabitaciones.size()) {
+				encontrado = false;
+				i = 0;
+				while (!encontrado) {
+					if(habitaciones.get(i).getId() == reservasHabitaciones.get(contadorHabitaciones).getTipoHabitacion().getId()) {
+						int disponibles = habitaciones.get(i).getDisponibles() - reservasHabitaciones.get(contadorHabitaciones).getTipoHabitacion().getDisponibles();
+						habitaciones.get(i).setDisponibles(disponibles);
+						encontrado = true;
+					}
+					i++;
+				}
+				contadorHabitaciones++;
+			}
+			contador ++;
+		}
+		return habitaciones;
+	}
+	
 
 }

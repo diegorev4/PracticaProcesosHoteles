@@ -100,5 +100,10 @@ public class Hotel implements Serializable{
 		return reservas;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+
 	
 }
