@@ -5,9 +5,17 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>Hoteles</title>
 </head>
 <body>
+
+	<h:inputText value="#{hotelesBean.fechaEntrada}">
+		<f:convertDateTime pattern=“YYYY/MM/DD"/>
+	</h:inputText>
+	<h:inputText value="#{hotelesBean.fechaSalida}">
+		<f:convertDateTime pattern=“YYYY/MM/DD"/>
+	</h:inputText>
+	
 	<h:dataTable value="#{hotelesBean.ho}" var="hotel"
 			border="0" cellpadding="4" cellspacing="0" rules="all"
 			style="border:solid 1px">
@@ -17,6 +25,25 @@
 				</f:facet>
 				<h:outputText value="#{hotel.nombre}"/>
 			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Localidad" />
+				</f:facet>
+				<h:outputText value="#{hotel.localidad}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Dirección" />
+				</f:facet>
+				<h:outputText value="#{hotel.direccion}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Disponibilidad" />
+				</f:facet>
+				<h:commandButton value="Ver Disponibilidad" action="#{}"/>
+			</h:column>
 	</h:dataTable>
+	<h:commandLink value="Inicio" action="index.xhtml"/>
 </body>
 </html>

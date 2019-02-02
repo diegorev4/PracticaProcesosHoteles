@@ -5,21 +5,20 @@
 	  xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Inicio</title>
+<title>Reserva</title>
 </h:head>
 <h:body>
-	<h1>Hoteles</h1>
+	<h1>Datos Personales</h1>
 	<h:form>
 		<h:panelGrid columns="2">
-			<h:outputLabel value="Nombre del Hotel"/>
-			<h:inputText value = "#{hotelesBean.nombre}"/>
-			<h:outputLabel value="Localidad"/>
-			<h:inputText value = "#{hotelesBean.localidad}"/>
-			
-			
+			<h:outputLabel value="Nombre"/>
+			<h:inputText value = "#{hotelesBean.nombreReserva}"/>
+			<h:outputLabel value="DNI"/>
+			<h:inputText value = "#{hotelesBean.dni}"/>
+			<h:outputLabel value="Número de Tarjeta"/>
+			<h:inputText value = "#{hotelesBean.numTarjeta}"/>
 		</h:panelGrid>
-		<h:commandButton value="Buscar" action="#{hotelesBean.buscarHotel}"/>
-		<h:commandButton value="Gestionar Reservas" action="buscarReserva.xhtml"/>
+		<h:commandButton value="Reserva" action="#{hotelesBean.reservar}"/>
 	</h:form>
 	
 </h:body>

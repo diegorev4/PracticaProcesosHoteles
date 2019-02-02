@@ -58,7 +58,7 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 
 	@Override
 	public ReservaTipoHabitacion reservar(TipoHabitacion tH, String nombre, String dni, int tarjeta, int numHabitaciones,
-			Date fechaEntrada, Date fechaSalida, int precio, String primerApellido, String segundoApellido, String email,
+			Date fechaEntrada, Date fechaSalida, String primerApellido, String segundoApellido, String email,
 			int cvc, int mesCaducidad, int anhoCaducidad, TipoTarjeta tipo) {
 		
 		Calendar c = Calendar.getInstance();
@@ -69,6 +69,8 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 				return null;
 			}
 		}
+		
+		double precio = numHabitaciones*tH.getPrecioPorNoche();
 		
 		ReservaTipoHabitacion r = new ReservaTipoHabitacion(numHabitaciones, tH, new Reserva(fechaEntrada, fechaSalida, precio, new Cliente(dni, nombre, primerApellido, segundoApellido, email),
 						new Pago(tarjeta, cvc, mesCaducidad, anhoCaducidad, tipo)));
