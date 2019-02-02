@@ -39,7 +39,7 @@ public class DatosReservas implements IReservasDAO{
 		e.persist(res);
 	}
 
-	public ReservaTipoHabitacion modificarReserva(ReservaTipoHabitacion reservaNueva) {
+	public ReservaTipoHabitacion modificarReservaHabitacion(ReservaTipoHabitacion reservaNueva) {
 		return e.merge(reservaNueva);
 	}
 
@@ -70,18 +70,30 @@ public class DatosReservas implements IReservasDAO{
 		return e.find(Reserva.class, id);
 	}
 
-	public void eliminarReserva(int id) {
+	public boolean eliminarReserva(int id) {
+		if(e.find(Reserva.class,id) == null) {
+			return false;
+		}
 		List<ReservaTipoHabitacion> habitaciones = consultaReservaHabitaciones(id);
 		for(int i=0;i<habitaciones.size();i++) {
 			ReservaTipoHabitacion res = e.find(ReservaTipoHabitacion.class, habitaciones.get(i).getId());
 			e.remove(res);
 		}
 		e.remove(e.find(Reserva.class,id));
+		return true;
 	}
 
 
 	public void addReserva(Reserva res) {
 		e.persist(res);		
+	}
+
+	public Reserva modificarReserva(Reserva r) {
+		return e.merge(r);
+	}
+
+	public ReservaTipoHabitacion consultaReservaHabitacion(int id) {
+		return e.find(ReservaTipoHabitacion.class,id);
 	}
 
 }

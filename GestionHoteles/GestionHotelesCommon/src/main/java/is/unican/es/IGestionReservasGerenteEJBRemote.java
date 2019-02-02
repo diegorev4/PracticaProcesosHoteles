@@ -11,6 +11,6 @@ import is.unican.es.dominio.ReservaTipoHabitacion;
 @Remote
 public interface IGestionReservasGerenteEJBRemote {
 	
-	public List<ReservaTipoHabitacion> consultarReservas(Date fecha);
-	public List<ReservaTipoHabitacion> consultarReservasRAngo(Date fechaIni, Date fechaFin);
+	public List<Reserva> consultarReservas(Date fecha);
+	public List<Reserva> consultarReservasRAngo(Date fechaIni, Date fechaFin);
 }

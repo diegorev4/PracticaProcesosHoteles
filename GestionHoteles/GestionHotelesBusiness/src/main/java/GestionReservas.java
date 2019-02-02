@@ -19,13 +19,13 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 	@EJB
 	private IReservasDAO dr;
 	@Override
-	public ReservaTipoHabitacion consultaReserva(int id) {
+	public Reserva consultaReserva(int id) {
 		return dr.consultaReserva(id);
 	}
 
 	@Override
 	public boolean cancelarReserva(int id) {
-		if(dr.eliminarReserva(id) == null) {
+		if(!dr.eliminarReserva(id)) {
 			return false;//Indica que no existe tal reserva
 		}
 		return true;
@@ -33,11 +33,11 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 
 	@Override
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo) {
-		ReservaTipoHabitacion r = dr.consultaReserva(id);
+		ReservaTipoHabitacion r = dr.consultaReservaHabitacion(id);
 		r.setTipoHabitacion(tipo);
 		r.setNumHabitaciones(numHabitaciones);
 		
-		if(dr.modificarReserva(r) == null) {
+		if(dr.modificarReservaHabitacion(r) == null) {
 			return false;
 		}
 		return true;
@@ -45,11 +45,10 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 
 	@Override
 	public boolean modificarReservaFecha(int id, Date fechaInicio,Date fechaSalida) {
-		ReservaTipoHabitacion reservaTipoHabitacion = dr.consultaReserva(id);
-		Reserva reserva = reservaTipoHabitacion.getReserva();
+		Reserva reserva = dr.consultaReserva(id);
 		reserva.setFechaEntrada(fechaInicio);
 		reserva.setFechaSalida(fechaSalida);
-		if(dr.modificarReserva(reservaTipoHabitacion) == null) {
+		if(dr.modificarReserva(reserva) == null) {
 			return false;
 		}
 		return true;
@@ -75,7 +74,7 @@ public class GestionReservas implements IGestionReservasEJBRemote{
 		ReservaTipoHabitacion r = new ReservaTipoHabitacion(numHabitaciones, tH, new Reserva(fechaEntrada, fechaSalida, precio, new Cliente(dni, nombre, primerApellido, segundoApellido, email),
 						new Pago(tarjeta, cvc, mesCaducidad, anhoCaducidad, tipo)));
 		
-		dr.addReserva(r);
+		dr.addReservaHabitacion(r);
 		return r;
 	}
 

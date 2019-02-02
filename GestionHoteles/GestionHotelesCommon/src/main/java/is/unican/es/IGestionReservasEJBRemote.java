@@ -12,7 +12,7 @@ import is.unican.es.dominio.TipoTarjeta;
 @Remote
 public interface IGestionReservasEJBRemote {
 
-	public ReservaTipoHabitacion consultaReserva(int id);
+	public Reserva consultaReserva(int id);
 	public boolean cancelarReserva(int id);
 	public boolean modificarReservaHabitaciones(int id, int numHabitaciones, TipoHabitacion tipo);
 	public boolean modificarReservaFecha(int id, Date fechaInicio,Date fechaSalida);
