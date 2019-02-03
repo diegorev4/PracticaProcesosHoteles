@@ -8,17 +8,13 @@
 <title>Reserva</title>
 </h:head>
 <h:body>
-	<h1>Datos Personales</h1>
+	<h1>Reserva realizada</h1>
 	<h:form>
 		<h:panelGrid columns="2">
-			<h:outputLabel value="Nombre"/>
-			<h:inputText value = "#{hotelesBean.nombrereserva}"/>
-			<h:outputLabel value="DNI"/>
-			<h:inputText value = "#{hotelesBean.dni}"/>
-			<h:outputLabel value="Número de Tarjeta"/>
-			<h:inputText value = "#{hotelesBean.numrarjeta}"/>
+			<h:outputLabel value="Código de la reserva: "/>
+			<h:inputText value = "#{hotelesBean.idReserva}"/>
 		</h:panelGrid>
-		<h:commandButton value="Reserva" action="#{hotelesBean.reservar}"/>
+		<h:button value="Inicio" action="index.xhtml"/>
 	</h:form>
 	
 </h:body>

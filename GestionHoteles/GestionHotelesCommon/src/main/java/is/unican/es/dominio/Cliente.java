@@ -1,10 +1,12 @@
 package is.unican.es.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
 
 	@Id
 	private String DNI;

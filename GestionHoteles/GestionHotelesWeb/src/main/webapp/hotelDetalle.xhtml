@@ -8,14 +8,20 @@
 <title>Hoteles</title>
 </head>
 <body>
-
-	<h:inputText value="#{hotelesBean.fechaEntrada}">
-		<f:convertDateTime pattern=“YYYY/MM/DD"/>
-	</h:inputText>
-	<h:inputText value="#{hotelesBean.fechaSalida}">
-		<f:convertDateTime pattern=“YYYY/MM/DD"/>
-	</h:inputText>
 	
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Fecha Entrada"/>
+			<h:inputText  value="#{hotelesBean.fechaEntrada}">
+				<f:convertDateTime pattern="YYYY/MM/DD"/>
+			</h:inputText>
+			<h:outputLabel value="Fecha Salida"/>
+			<h:inputText  value="#{hotelesBean.fechaSalida}">
+				<f:convertDateTime pattern="YYYY/MM/DD"/>
+			</h:inputText>
+			
+		</h:panelGrid>
+	</h:form>
 	<h:dataTable value="#{hotelesBean.ho}" var="hotel"
 			border="0" cellpadding="4" cellspacing="0" rules="all"
 			style="border:solid 1px">
@@ -41,9 +47,9 @@
 				<f:facet name="header">
 					<h:outputText value="Disponibilidad" />
 				</f:facet>
-				<h:commandButton value="Ver Disponibilidad" action="#{}"/>
+				<h:commandButton value="Ver Disponibilidad" action="#{hotelesBean.verDisponibilidad}"/>
 			</h:column>
 	</h:dataTable>
-	<h:commandLink value="Inicio" action="index.xhtml"/>
+	<h:button value="Inicio" outcome="index.xhtml"/>
 </body>
 </html>

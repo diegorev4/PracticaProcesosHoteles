@@ -8,14 +8,14 @@
 <title>Reservas</title>
 </head>
 <body>
+	<h1>Confirmación</h1>
 	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Numero de Reserva"/>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="La Reserva: "/>
 			<h:inputText value = "#{reservasBean.numReserva}"/>		
+			<h:outputLabel value=" ha sido modificada."/>	
 		</h:panelGrid>
-		<h:commandButton value="Cancelar Reserva" action="#{reservasBean.cancelarReserva}"/>
-		<h:commandButton value="Modificar Reserva" action="#{reservasBean.modificarReserva}"/>
-		<h:commandButton value="Inicio" action="index.xhtml"/>
+		<h:button value="Inicio" outcome="index.xhtml"/>
 	</h:form>
 </body>
 </html>
