@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import is.unican.es.dominio.Reserva;
+
 @Named
 @SessionScoped
 public class ReservasBean implements Serializable {
@@ -15,12 +17,19 @@ public class ReservasBean implements Serializable {
 	private IGestionReservasEJBRemote reservas;
 	
 	private int numReserva;
-
+	private Reserva r;
 	private Date fechaEntrada;
 	private Date fechaSalida;
 	
+	public String consultarReserva() {
+		r = reservas.consultaReserva(numReserva);
+		if(r==null) {
+			return "mensajeError.xhtml";
+		}
+		return "buscarReserva";
+	}
 	public void cancelarReserva() {
-		reservas.cancelarReserva(numReserva);
+		reservas.cancelarReserva(r.getId());
 	}
 	
 	public String modificarReserva() {
@@ -28,7 +37,7 @@ public class ReservasBean implements Serializable {
 	}
 	
 	public String modificarFechas() {
-		reservas.modificarReservaFecha(numReserva, fechaEntrada, fechaSalida);
+		reservas.modificarReservaFecha(r.getId(), fechaEntrada, fechaSalida);
 		return "confirmadaModificacion.xhtml";
 	}
 	
@@ -54,6 +63,12 @@ public class ReservasBean implements Serializable {
 
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
+	}
+	public Reserva getR() {
+		return r;
+	}
+	public void setR(Reserva r) {
+		this.r = r;
 	}
 	
 	

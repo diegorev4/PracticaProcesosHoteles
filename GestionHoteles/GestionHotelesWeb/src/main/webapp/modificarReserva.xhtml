@@ -11,11 +11,11 @@
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Fecha Entrada"/>
-			<h:inputText id="f1" value = "#{reservasBean.fechaEntrada}"><f:convertDateTime pattern="dd-mm-yyyy"/></h:inputText>	
+			<h:inputText id="f1" required="true" value = "#{reservasBean.fechaEntrada}"><f:convertDateTime pattern="dd-mm-yyyy"/></h:inputText>	
 			<h:message for = "f1" style = "color:red" />	
 			<h:outputLabel value="Fecha Salida"/>
 			<h:inputText id="f2" value = "#{reservasBean.fechaSalida}"><f:convertDateTime pattern="dd-mm-yyyy"/></h:inputText>
-			<h:message for = "f2" style = "color:red" />	
+			<h:message for = "f2" required="true" style = "color:red" />	
 		</h:panelGrid>
 		
 		<h:commandButton value="Modificar Reserva" action="#{reservasBean.modificarFechas}"/>

@@ -11,16 +11,9 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Numero de Reserva"/>
-			<h:outputText value = "#{reservasBean.r.id}"/>
-			<h:outputLabel value="Fecha Entrada"/>
-			<h:outputText value = "#{reservasBean.r.fechaEntrada}"/>
-			<h:outputLabel value="Fecha Salida"/>
-			<h:outputText value = "#{reservasBean.r.fechaSalida}"/>
-			<h:outputLabel value="Precio"/>
-			<h:outputText value = "#{reservasBean.r.precio}"/>
+			<h:inputText value = "#{reservasBean.numReserva}"/>		
 		</h:panelGrid>
-		<h:commandButton value="Cancelar Reserva" action="#{reservasBean.cancelarReserva}"/>
-		<h:commandButton value="Modificar Reserva" action="#{reservasBean.modificarReserva}"/>
+		<h:commandButton value="Consultar Reserva" action="#{reservasBean.consultarReserva}"/>
 		<h:commandButton value="Inicio" action="index.xhtml"/>
 	</h:form>
 </body>

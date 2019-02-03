@@ -10,13 +10,16 @@
 <h:body>
 	<h1>Datos Personales</h1>
 	<h:form>
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="3">
 			<h:outputLabel value="Nombre"/>
-			<h:inputText value = "#{hotelesBean.nombrereserva}"/>
+			<h:inputText id="n1" required="true" value = "#{hotelesBean.nombrereserva}"/>
+			<h:message for = "n1" style = "color:red" />	
 			<h:outputLabel value="DNI"/>
-			<h:inputText value = "#{hotelesBean.dni}"/>
+			<h:inputText id="d1" required="true" value = "#{hotelesBean.dni}"/>
+			<h:message for = "d1" style = "color:red" />	
 			<h:outputLabel value="Número de Tarjeta"/>
-			<h:inputText value = "#{hotelesBean.numrarjeta}"/>
+			<h:inputText id="t1" required="true" value = "#{hotelesBean.numtarjeta}"/>
+			<h:message for = "t1" style = "color:red" />	
 		</h:panelGrid>
 		<h:commandButton value="Reserva" action="#{hotelesBean.reservar}"/>
 	</h:form>

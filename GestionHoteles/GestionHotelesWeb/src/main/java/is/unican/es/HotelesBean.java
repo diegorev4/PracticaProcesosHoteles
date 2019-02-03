@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
@@ -67,7 +68,7 @@ public class HotelesBean implements Serializable{
 	public String verDisponibilidad() {
 		h = ho.getRowData();
 		
-		hab = new ListDataModel<TipoHabitacion>(h.getHabitaciones());
+		hab = new ListDataModel<TipoHabitacion>(gest.verDisponibilidad(h, fechaEntrada, fechaSalida));
 		return "disponibilidad.xhtml";
 	}
 	
