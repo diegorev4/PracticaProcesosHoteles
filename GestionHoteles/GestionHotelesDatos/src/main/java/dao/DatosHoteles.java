@@ -66,22 +66,26 @@ public class DatosHoteles implements IHotelesDAO {
 	}
 
 	public List<TipoHabitacion> habitacionesDisponibles(Hotel h, Date fechaInicial, Date fechaFinal) {
-		List<TipoHabitacion> habitaciones = h.getHabitaciones();
-		Query q = e.createQuery("SELECT r FROM Reserva r WHERE r.hotel_fk = :hotelId "
+		Hotel hotel = hotelPorId(h.getId());
+		hotel.getHabitaciones().size();
+		List<TipoHabitacion> habitaciones = hotel.getHabitaciones();
+		Query q = e.createQuery("SELECT r FROM Reserva r JOIN r.hotel h WHERE h.id = :hotelId "
 				+ "and r.fechaSalida > :fechaInicial");
 		q.setParameter("hotelId", h.getId());
+		q.setParameter("fechaInicial",fechaInicial);
 		@SuppressWarnings("unchecked")
 		List<Reserva> reservas = q.getResultList();
 		int contador = 0;
 		while(contador < reservas.size()){
-			List<ReservaTipoHabitacion> reservasHabitaciones = reservasDAO.consultaReservaHabitaciones(reservas.get(contador).getId());
+			reservas.get(contador).getHabitaciones().size();
+			List<ReservaTipoHabitacion> reservasHabitaciones = reservas.get(contador).getHabitaciones();
 			int contadorHabitaciones = 0;
 			boolean encontrado;
 			int i;
 			while (contadorHabitaciones < reservasHabitaciones.size()) {
 				encontrado = false;
 				i = 0;
-				while (!encontrado) {
+				while (!encontrado && i < habitaciones.size()) {
 					if(habitaciones.get(i).getId() == reservasHabitaciones.get(contadorHabitaciones).getTipoHabitacion().getId()) {
 						int disponibles = habitaciones.get(i).getDisponibles() - reservasHabitaciones.get(contadorHabitaciones).getTipoHabitacion().getDisponibles();
 						habitaciones.get(i).setDisponibles(disponibles);

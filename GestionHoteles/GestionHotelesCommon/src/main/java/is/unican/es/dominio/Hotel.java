@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +28,7 @@ public class Hotel implements Serializable{
 	@OneToMany
 	@JoinColumn(name="hotel_fk")
 	private List<TipoHabitacion> habitaciones;
-	@OneToMany
-	@JoinColumn(name="hotel_fk")
+	@OneToMany(mappedBy="hotel")
 	private List<Reserva> reservas;
 	
 	public Hotel() {

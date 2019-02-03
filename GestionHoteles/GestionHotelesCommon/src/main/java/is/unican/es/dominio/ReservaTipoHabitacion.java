@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +20,7 @@ public class ReservaTipoHabitacion implements Serializable{
 	@OneToOne
 	@JoinColumn(name="tipoHabitacion_fk")
 	private TipoHabitacion tipoHabitacion;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="reserva_fk")
 	private Reserva reserva;
 	

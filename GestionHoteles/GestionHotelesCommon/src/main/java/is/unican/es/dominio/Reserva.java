@@ -2,8 +2,10 @@ package is.unican.es.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +30,11 @@ public class Reserva implements Serializable {
 	@JoinColumn(name="cliente_fk")
 	private Cliente cliente;
 	private Pago metodoPago;
+	@ManyToOne
+	@JoinColumn(name="hotel_fk")
+	private Hotel hotel;
+	@OneToMany(mappedBy="reserva")
+	private List<ReservaTipoHabitacion> habitaciones;
 	
 	
 	public Reserva() {
@@ -89,5 +96,21 @@ public class Reserva implements Serializable {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public List<ReservaTipoHabitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(List<ReservaTipoHabitacion> habitaciones) {
+		this.habitaciones = habitaciones;
 	}
 }

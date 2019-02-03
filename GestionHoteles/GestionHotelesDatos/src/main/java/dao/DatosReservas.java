@@ -21,7 +21,7 @@ public class DatosReservas implements IReservasDAO{
 	private EntityManager e;
 
 	public List<ReservaTipoHabitacion> consultaReservaHabitaciones(int id) { 
-		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r WHERE r.reserva_fk = :reservaId");
+		Query q = e.createQuery("SELECT r FROM ReservaTipoHabitacion r JOIN r.reserva rr WHERE rr.id = :reservaId");
 		q.setParameter("reservaId", id);
 		List<ReservaTipoHabitacion> reservas = q.getResultList();
 		if(reservas != null) {
