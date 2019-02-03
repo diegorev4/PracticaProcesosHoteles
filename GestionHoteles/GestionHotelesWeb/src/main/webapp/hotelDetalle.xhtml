@@ -12,18 +12,16 @@
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Fecha Entrada"/>
-			<h:inputText id="f1" required="true" value="#{hotelesBean.fechaEntrada}">
+			<h:inputText id="f1" required="true" requiredMessage="Fecha no introducida" value="#{hotelesBean.fechaEntrada}">
 				<f:convertDateTime pattern="dd-mm-yyyy"/>
 			</h:inputText>
 			<h:message for = "f1" style = "color:red" />
 			<h:outputLabel value="Fecha Salida"/>
-			<h:inputText id="f2" required="true"  value="#{hotelesBean.fechaSalida}">
+			<h:inputText id="f2" required="true" requiredMessage="Fecha no introducida" value="#{hotelesBean.fechaSalida}">
 				<f:convertDateTime pattern="dd-mm-yyyy"/>
 			</h:inputText>
 			<h:message for = "f2" style = "color:red" />
 		</h:panelGrid>
-	</h:form>
-	<h:form>
 	<h:dataTable value="#{hotelesBean.ho}" var="hotel"
 			border="0" cellpadding="4" cellspacing="0" rules="all"
 			style="border:solid 1px">
@@ -49,7 +47,7 @@
 				<f:facet name="header">
 					<h:outputText value="Disponibilidad" />
 				</f:facet>
-				<h:commandButton id="b1" value="Ver Disponibilidad" immediate="true" action="#{hotelesBean.verDisponibilidad}"/>
+				<h:commandButton id="b1" value="Ver Disponibilidad"  action="#{hotelesBean.verDisponibilidad}"/>
 				<h:message for = "b1" style = "color:red" />
 			</h:column>
 	</h:dataTable>

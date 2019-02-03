@@ -10,12 +10,19 @@
 <h:body>
 	<h1>Reserva realizada</h1>
 	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Código de la reserva: "/>
-			<h:outputText value = "#{hotelesBean.idReserva}"/>
-		</h:panelGrid>
-		<h:button value="Inicio" action="index.xhtml"/>
+	<h:dataTable value="#{hotelesBean.idsReservas}" var="reserva"
+			border="0" cellpadding="4" cellspacing="0" rules="all"
+			style="border:solid 1px">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Reserva" />
+				</f:facet>
+					<h:outputLabel value="Código de reserva "/>
+					<h:outputText value="#{reserva.id}"/>
+			</h:column>
+	</h:dataTable>
 	</h:form>
+	<h:button value="Inicio" outcome="index.xhtml"/>
 	
 </h:body>
 </html>

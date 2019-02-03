@@ -28,8 +28,9 @@ public class ReservasBean implements Serializable {
 		}
 		return "buscarReserva";
 	}
-	public void cancelarReserva() {
+	public String cancelarReserva() {
 		reservas.cancelarReserva(r.getId());
+		return "confirmadaModificacion.xhtml";
 	}
 	
 	public String modificarReserva() {

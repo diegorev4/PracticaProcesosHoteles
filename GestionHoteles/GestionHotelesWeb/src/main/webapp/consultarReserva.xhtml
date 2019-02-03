@@ -11,7 +11,7 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Numero de Reserva"/>
-			<h:inputText value = "#{reservasBean.numReserva}"/>		
+			<h:inputText required="true" requiredMessage="Número incorrecto" value="#{reservasBean.numReserva}"/>		
 		</h:panelGrid>
 		<h:commandButton value="Consultar Reserva" action="#{reservasBean.consultarReserva}"/>
 		<h:commandButton value="Inicio" action="index.xhtml"/>

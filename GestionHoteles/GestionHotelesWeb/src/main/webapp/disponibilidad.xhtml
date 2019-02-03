@@ -34,10 +34,10 @@
 				<f:facet name="header">
 					<h:outputText value="Número de Habitaciones" />
 				</f:facet>
-				<h:inputText value="#{hotelesBean.habitacionesSeleccionadas[item.id]}"/>
+				<h:inputText value="#{hotelesBean.habitacionesSeleccionadas[item]}"/>
 			</h:column>
 	</h:dataTable>
-	<h:commandButton value="Reservar" action="reserva.xhtml"/>
-	<h:commandLink value="Volver" action="index.xhtml"/>
+	<h:button value="Reservar" outcome="reserva.xhtml"/>
+	<h:button value="Volver" outcome="index.xhtml"/>
 </h:body>
 </html>

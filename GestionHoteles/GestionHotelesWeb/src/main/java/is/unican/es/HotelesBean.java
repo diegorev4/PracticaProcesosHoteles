@@ -3,6 +3,7 @@ package is.unican.es;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 
 import is.unican.es.dominio.Hotel;
+import is.unican.es.dominio.Reserva;
+import is.unican.es.dominio.ReservaTipoHabitacion;
 import is.unican.es.dominio.TipoHabitacion;
 
 @Named
@@ -39,7 +42,8 @@ public class HotelesBean implements Serializable{
 	private DataModel<Hotel> ho;
 	private DataModel<TipoHabitacion> hab;
 	
-	private Map<Integer, Integer> habitacionesSeleccionadas;
+	private Map<TipoHabitacion, Integer> habitacionesSeleccionadas = new HashMap<TipoHabitacion, Integer>();
+	private List<Reserva> idsReservas;
 	
 	private int idReserva;
 	
@@ -74,13 +78,17 @@ public class HotelesBean implements Serializable{
 	
 	public String reservar() {
 		Iterator i = hab.iterator();
+		idsReservas = new ArrayList<Reserva>();
 		
 		while(i.hasNext()) {
 			TipoHabitacion t = (TipoHabitacion) i.next();
-			int aux = t.getId();
-			if(habitacionesSeleccionadas.get(aux) != null) {
+			//int aux = t.getId();
+			ReservaTipoHabitacion r;
+			
+			if(habitacionesSeleccionadas.get(t) != null) {
 				//Cambiar tipo habitacion por una lista de tipos de habitacion
-				res.reservar(t, nombrereserva, dni, numtarjeta, habitacionesSeleccionadas.get(aux), fechaEntrada, fechaSalida, "", "", "", 0, 11, 2030, null);
+				r = res.reservar(t, nombrereserva, dni, numtarjeta, habitacionesSeleccionadas.get(t), fechaEntrada, fechaSalida, "", "", "", 0, 11, 2030, null);
+				idsReservas.add(r.getReserva());
 			}
 		}
 		return "confirmacion.xhtml";
@@ -134,11 +142,11 @@ public class HotelesBean implements Serializable{
 		this.hab = hab;
 	}
 
-	public Map<Integer, Integer> getHabitacionesSeleccionadas() {
+	public Map<TipoHabitacion, Integer> getHabitacionesSeleccionadas() {
 		return habitacionesSeleccionadas;
 	}
 
-	public void setHabitacionesSeleccionadas(Map<Integer, Integer> habitacionesSeleccionadas) {
+	public void setHabitacionesSeleccionadas(Map<TipoHabitacion, Integer> habitacionesSeleccionadas) {
 		this.habitacionesSeleccionadas = habitacionesSeleccionadas;
 	}
 
@@ -180,6 +188,14 @@ public class HotelesBean implements Serializable{
 
 	public void setIdReserva(int idReserva) {
 		this.idReserva = idReserva;
+	}
+
+	public List<Reserva> getIdsReservas() {
+		return idsReservas;
+	}
+
+	public void setIdsReservas(List<Reserva> idsReservas) {
+		this.idsReservas = idsReservas;
 	}
 
 	

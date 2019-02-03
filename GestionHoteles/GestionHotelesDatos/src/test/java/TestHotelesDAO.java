@@ -17,8 +17,7 @@ import is.unican.es.IHotelesDAO;
 import is.unican.es.dominio.Hotel;
 
 public class TestHotelesDAO {
-/**
- * 
+/*
  
 	private static IHotelesDAO d;
 	private static EJBContainer ec;
@@ -31,7 +30,7 @@ public class TestHotelesDAO {
 				"C:/Users/Diego/Documents/glassfish4/glassfish");
 		//Creación del EJBContainer con propiedades
 		ec = EJBContainer.createEJBContainer(properties);
-		d = (IHotelesDAO) ec.getContext().lookup("java:global/GestionHotelesCommon-0.0.1-SNAPSHOT/PeliculasDAO!is.unican.es.IHotelesDAO");
+		d = (IHotelesDAO) ec.getContext().lookup("java:global/GestionHotelesDatos-0.0.1-SNAPSHOT/DatosHoteles!is.unican.es.IHotelesDAO");
 	}
 	
 	@Test

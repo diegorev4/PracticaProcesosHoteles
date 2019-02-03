@@ -90,9 +90,9 @@ public class DatosReservas implements IReservasDAO{
 
 	public Reserva modificarReserva(Reserva r) {
 		Query query = e.createQuery("UPDATE Reserva r SET r.fechaEntrada =:entrada, r.fechaSalida=:salida "+ "WHERE r.id=:idReserva ");
-        query.setParameter("idReserva", ""+ r.getId());
-        query.setParameter("entrada", ""+r.getFechaEntrada());
-        query.setParameter("salida", ""+r.getFechaSalida());
+        query.setParameter("idReserva", r.getId());
+        query.setParameter("entrada", r.getFechaEntrada());
+        query.setParameter("salida", r.getFechaSalida());
         int res = query.executeUpdate();
         
         if(res == 1) {
